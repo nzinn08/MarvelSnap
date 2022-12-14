@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <script>
+            function GetCacheSetOffset () 
+            {
+                let collectionLevel = document.getElementById('cl').value
+                const startingCollectionLevel = 1006
+                const cachesInSet = 4
+                const cachesInPool4Set = 40
+                const collectionLevelsPerCache = 12
+                if (collectionLevel >= startingCollectionLevel)
+                {
+                    let cardOffset = (Math.floor((collectionLevel - startingCollectionLevel) / collectionLevelsPerCache) % cachesInSet) + 1
+                    let pool4Offset = (Math.floor((collectionLevel - startingCollectionLevel) / collectionLevelsPerCache) % cachesInPool4Set) + 1
+                    document.getElementById("resultCard").innerHTML = cardOffset
+                    document.getElementById("resultPool4").innerHTML = pool4Offset
+                }
+                else
+                {
+                    alert("Error you must enter a collection level >= " + startingCollectionLevel)
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <form>
+            Enter your collection level:<input type="text" id="cl"/>
+            <br/>
+            <input type="button" onClick="GetCacheSetOffset()" value="GetGoods"/>
+        </form>
+        <p>You just opened cache number <span id = "resultCard">X</span> in the 4 cache set</p>
+        <p>You just opened cache number <span id = "resultPool4">X</span> in the 40 cache set to get a pool 4 card</p>
+    </body>
+</html>
